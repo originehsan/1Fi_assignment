@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/marketplace_provider.dart';
 import '../widgets/async_state_views.dart';
-import '../widgets/product_grid.dart';
+import '../widgets/product_list.dart';
 import '../widgets/skeleton_views.dart';
 import 'product_detail_screen.dart';
 
-/// The Marketplace tab: category filter and the product grid.
+/// The Marketplace tab: category filter and the product list.
 ///
 /// The search bar that used to live here is now owned by `ShopPage`
 /// and shared across all three Shop tabs — this screen only reads
@@ -56,7 +56,7 @@ class MarketplaceListingScreen extends ConsumerWidget {
         const SizedBox(height: 4),
         Expanded(
           child: ref.watch(filteredProductsProvider).when(
-                loading: () => const ProductGridSkeleton(),
+                loading: () => const ProductListSkeleton(),
                 error: (error, stackTrace) => ErrorRetryView(
                   message: 'Something went wrong while loading products.',
                   onRetry: () => ref.invalidate(productListProvider),
@@ -71,7 +71,7 @@ class MarketplaceListingScreen extends ConsumerWidget {
                           : 'No products in the marketplace yet.',
                     );
                   }
-                  return ProductGrid(
+                  return ProductList(
                     products: products,
                     maxNoCostTenureMonths:
                         ref.watch(marketplaceRepositoryProvider).maxNoCostTenureMonths,

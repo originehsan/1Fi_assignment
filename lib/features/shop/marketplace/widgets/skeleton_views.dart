@@ -63,73 +63,67 @@ class _ShimmerBoxState extends State<ShimmerBox> with SingleTickerProviderStateM
   }
 }
 
-/// Placeholder matching [ProductCard]'s layout shape, shown while a
-/// product grid is loading.
-class ProductCardSkeleton extends StatelessWidget {
-  const ProductCardSkeleton({super.key});
+/// Placeholder matching [ProductListItem]'s layout shape, shown while the
+/// product list is loading.
+class ProductListItemSkeleton extends StatelessWidget {
+  const ProductListItemSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Card(
       clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: ShimmerBox(height: double.infinity),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ShimmerBox(
-                  width: 60,
-                  height: 10,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                SizedBox(height: 6),
-                ShimmerBox(
-                  width: 120,
-                  height: 14,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-                SizedBox(height: 6),
-                ShimmerBox(
-                  width: 100,
-                  height: 12,
-                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                ),
-              ],
+      child: Padding(
+        padding: EdgeInsets.all(12),
+        child: Row(
+          children: [
+            ShimmerBox(
+              width: 72,
+              height: 72,
+              borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
-          ),
-        ],
+            SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ShimmerBox(
+                    width: 150,
+                    height: 16,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                  SizedBox(height: 6),
+                  ShimmerBox(
+                    width: 100,
+                    height: 12,
+                    borderRadius: BorderRadius.all(Radius.circular(4)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-/// Placeholder grid shown while [filteredProductsProvider] is loading.
-/// Mirrors [ProductGrid]'s `GridView.builder` configuration exactly so the
-/// skeleton doesn't visibly reflow into the real grid once data arrives.
-class ProductGridSkeleton extends StatelessWidget {
-  const ProductGridSkeleton({super.key, this.itemCount = 6});
+/// Placeholder list shown while [filteredProductsProvider] is loading.
+/// Mirrors [ProductList]'s `ListView.builder` configuration exactly so the
+/// skeleton doesn't visibly reflow into the real list once data arrives.
+class ProductListSkeleton extends StatelessWidget {
+  const ProductListSkeleton({super.key, this.itemCount = 6});
 
   final int itemCount;
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return ListView.builder(
       padding: const EdgeInsets.all(16),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 220,
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        childAspectRatio: 0.62,
-      ),
       itemCount: itemCount,
-      itemBuilder: (context, index) => const ProductCardSkeleton(),
+      itemBuilder: (context, index) => const Padding(
+        padding: EdgeInsets.only(bottom: 12),
+        child: ProductListItemSkeleton(),
+      ),
     );
   }
 }
