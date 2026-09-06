@@ -1,62 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../theme/app_theme.dart';
 import '../providers/marketplace_provider.dart';
 import '../widgets/async_state_views.dart';
 import '../widgets/product_grid.dart';
 import '../widgets/skeleton_views.dart';
 import 'product_detail_screen.dart';
 
-/// The Marketplace tab: search, category filter, and the product grid.
+/// The Marketplace tab: category filter and the product grid.
 ///
-/// `ConsumerStatefulWidget` only because this screen owns a
-/// `TextEditingController` — a lifecycle-owned UI object, not a business
-/// state reason (see rules.md Section 2's `StatefulWidget` exception).
-class MarketplaceListingScreen extends ConsumerStatefulWidget {
+/// The search bar that used to live here is now owned by `ShopPage`
+/// and shared across all three Shop tabs — this screen only reads
+/// [marketplaceSearchQueryProvider], it doesn't own the `TextField` that
+/// writes to it. With no controller left to own, this is a plain
+/// `ConsumerWidget`.
+class MarketplaceListingScreen extends ConsumerWidget {
   const MarketplaceListingScreen({super.key});
 
   @override
-  ConsumerState<MarketplaceListingScreen> createState() => _MarketplaceListingScreenState();
-}
-
-class _MarketplaceListingScreenState extends ConsumerState<MarketplaceListingScreen> {
-  final _searchController = TextEditingController();
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final categories = ref.watch(availableCategoriesProvider);
     final selectedCategory = ref.watch(selectedCategoryProvider);
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-          child: TextField(
-            controller: _searchController,
-            onChanged: (value) => ref.read(marketplaceSearchQueryProvider.notifier).state = value,
-            decoration: InputDecoration(
-              hintText: 'Search marketplace...',
-              prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
-              filled: true,
-              fillColor: AppColors.cardBackground,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: const BorderSide(color: AppColors.divider),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: const BorderSide(color: AppColors.divider),
-              ),
-            ),
-          ),
-        ),
         if (categories.isNotEmpty)
           SizedBox(
             height: 40,
@@ -96,7 +63,8 @@ class _MarketplaceListingScreenState extends ConsumerState<MarketplaceListingScr
                 ),
                 data: (products) {
                   if (products.isEmpty) {
-                    final isFiltered = _searchController.text.isNotEmpty || selectedCategory != null;
+                    final isFiltered = ref.watch(marketplaceSearchQueryProvider).isNotEmpty ||
+                        selectedCategory != null;
                     return EmptyView(
                       message: isFiltered
                           ? 'No products match your search or filter.'

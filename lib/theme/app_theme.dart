@@ -25,6 +25,17 @@ class AppColors {
   static const Color error = Color(0xFFDC2626);
   static const Color divider = Color(0xFFEBEBEB);
   static const Color lavenderTint = Color(0xFFF5F0FF);
+
+  /// Darker purple used as the start of the Shop hero banner's gradient
+  /// (fades into [primary]). Medium confidence — a screenshot-review
+  /// estimate, not pixel-sampled; see architecture.md Section 11.
+  static const Color heroBannerGradientStart = Color(0xFF2D1470);
+
+  /// Text/icon color for content painted directly on top of a
+  /// [primary]-colored surface (e.g. the hero banner). Aliases
+  /// `Colors.white` so call sites outside this file never reference
+  /// `Colors.*` directly, per rules.md Section 3.
+  static const Color onPrimary = Colors.white;
 }
 
 /// App-wide `ThemeData`, built entirely from [AppColors] tokens.
