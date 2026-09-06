@@ -1,0 +1,81 @@
+[
+  {
+    "id": "p1",
+    "name": "AirPulse Pro Headphones",
+    "brand": "Sonara",
+    "imageUrl": "https://picsum.photos/seed/p1/600/600",
+    "basePrice": 8999,
+    "description": "Over-ear wireless headphones with active noise cancellation and 40-hour battery life.",
+    "category": "Electronics",
+    "variants": [
+      { "id": "p1-black", "label": "Midnight Black", "priceDelta": 0 },
+      { "id": "p1-white", "label": "Pearl White", "priceDelta": 0 },
+      { "id": "p1-blue", "label": "Ocean Blue", "priceDelta": 300 }
+    ]
+  },
+  {
+    "id": "p2",
+    "name": "PulseFit Watch SE",
+    "brand": "Vantik",
+    "imageUrl": "https://picsum.photos/seed/p2/600/600",
+    "basePrice": 6499,
+    "description": "Smartwatch with heart-rate tracking, SpO2 monitoring, and a 7-day battery.",
+    "category": "Electronics",
+    "variants": [
+      { "id": "p2-40mm", "label": "40mm", "priceDelta": 0 },
+      { "id": "p2-44mm", "label": "44mm", "priceDelta": 500 }
+    ]
+  },
+  {
+    "id": "p3",
+    "name": "ClickShot X200",
+    "brand": "Lumira",
+    "imageUrl": "https://picsum.photos/seed/p3/600/600",
+    "basePrice": 32999,
+    "description": "Mirrorless camera with a 24MP sensor, 4K video, and interchangeable-lens support.",
+    "category": "Electronics",
+    "variants": [
+      { "id": "p3-body", "label": "Body Only", "priceDelta": 0 },
+      { "id": "p3-kit", "label": "With 18-55mm Lens Kit", "priceDelta": 8000 }
+    ]
+  },
+  {
+    "id": "p4",
+    "name": "Nestwood Lounge Chair",
+    "brand": "Cassera",
+    "imageUrl": "https://picsum.photos/seed/p4/600/600",
+    "basePrice": 12499,
+    "description": "Solid-wood lounge chair with a cushioned seat, built for everyday comfort.",
+    "category": "Home",
+    "variants": [
+      { "id": "p4-walnut", "label": "Walnut Finish", "priceDelta": 0 },
+      { "id": "p4-oak", "label": "Oak Finish", "priceDelta": 400 }
+    ]
+  },
+  {
+    "id": "p5",
+    "name": "CycloneMax Vacuum",
+    "brand": "Breezo",
+    "imageUrl": "https://picsum.photos/seed/p5/600/600",
+    "basePrice": 9999,
+    "description": "Cordless stick vacuum with cyclonic suction and a washable HEPA filter.",
+    "category": "Home",
+    "variants": [
+      { "id": "p5-standard", "label": "Standard", "priceDelta": 0 },
+      { "id": "p5-pet", "label": "Pet Hair Edition", "priceDelta": 700 }
+    ]
+  },
+  {
+    "id": "p6",
+    "name": "BeamCast Mini Projector",
+    "brand": "Vortec",
+    "imageUrl": "https://picsum.photos/seed/p6/600/600",
+    "basePrice": 15999,
+    "description": "Portable full-HD projector with built-in speakers and wireless screen mirroring.",
+    "category": "Lifestyle",
+    "variants": [
+      { "id": "p6-standard", "label": "Standard", "priceDelta": 0 },
+      { "id": "p6-tripod", "label": "With Tripod Stand", "priceDelta": 900 }
+    ]
+  }
+]
