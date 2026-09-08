@@ -134,8 +134,3 @@ Four tests:
 - No backend integration — all "network" behavior is a simulated delay over a local asset, structured so a real implementation is a drop-in replacement.
 - The order-confirmation step is a demo — no checkout, payment, or persistence, consistent with the assignment's stated scope.
 - Top Brands, Nearby Stores, and the four non-Shop bottom-nav tabs are intentionally blank placeholders, per the assignment's note that only the Marketplace section requires implementation.
-
-## Further reading
-
-- [`architecture.md`](./architecture.md) — system design and the reasoning behind each decision
-- [`rules.md`](./rules.md) — coding conventions enforced throughout, with a live audit against the current codebase
