@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../theme/app_theme.dart';
 import '../models/product.dart';
 import 'product_list_item.dart';
 
@@ -20,7 +21,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppSpacing.listContentPadding),
       itemCount: products.length,
       itemBuilder: (context, index) {
         final product = products[index];

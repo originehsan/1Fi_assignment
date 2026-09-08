@@ -332,7 +332,7 @@ class _SegmentedTabs extends StatelessWidget {
                               width: 24,
                               decoration: BoxDecoration(
                                 color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(AppRadius.indicatorBar),
                               ),
                             )
                           : null,

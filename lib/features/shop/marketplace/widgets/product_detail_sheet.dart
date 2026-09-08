@@ -93,6 +93,14 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
     final effectivePrice = product.basePrice + (selectedVariant?.priceDelta ?? 0);
     final canProceed = selectedVariant != null && selection.selectedEmiPlan != null;
 
+    String proceedButtonLabel() {
+      final hasVariant = selectedVariant != null;
+      final hasPlan = selection.selectedEmiPlan != null;
+      if (hasVariant && hasPlan) return 'Proceed';
+      if (hasVariant && !hasPlan) return 'Select an EMI plan';
+      return 'Select an option';
+    }
+
     return Column(
       children: [
         Expanded(
@@ -105,7 +113,7 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
                 child: AspectRatio(
                   aspectRatio: 4 / 3,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppRadius.thumbnail),
                     child: CachedNetworkImage(
                       imageUrl: product.imageUrl,
                       fit: BoxFit.cover,
@@ -148,7 +156,7 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
                       style: const TextStyle(color: AppColors.textSecondary),
                     ),
                     const SizedBox(height: 20),
-                    const Text('Select an option', style: TextStyle(fontWeight: FontWeight.w600)),
+                    const Text('Select an option', style: AppTextStyles.sectionLabel),
                     const SizedBox(height: 8),
                     VariantSelector(
                       variants: product.variants,
@@ -156,7 +164,7 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
                       onSelect: notifier.selectVariant,
                     ),
                     const SizedBox(height: 20),
-                    const Text('EMI plans', style: TextStyle(fontWeight: FontWeight.w600)),
+                    const Text('EMI plans', style: AppTextStyles.sectionLabel),
                     const SizedBox(height: 8),
                     if (selectedVariant == null)
                       const Padding(
@@ -182,14 +190,34 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
         SafeArea(
           top: false,
           child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: ElevatedButton(
-              onPressed: canProceed ? () => setState(() => _showingSummary = true) : null,
-              child: Text(
-                canProceed
-                    ? 'Proceed – ₹${selection.selectedEmiPlan!.monthlyAmount}/mo'
-                    : 'Select an option and EMI plan',
-              ),
+            padding: const EdgeInsets.all(AppSpacing.sheetActionPadding),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (selection.selectedEmiPlan != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Text(
+                      'You\'ll pay ₹${selection.selectedEmiPlan!.monthlyAmount}/mo for ${selection.selectedEmiPlan!.tenureMonths} months',
+                      style: AppTextStyles.caption,
+                    ),
+                  ),
+                ElevatedButton(
+                  onPressed: canProceed ? () => setState(() => _showingSummary = true) : null,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(proceedButtonLabel()),
+                      if (canProceed)
+                        const Padding(
+                          padding: EdgeInsets.only(left: 6),
+                          child: Icon(Icons.arrow_forward, size: 18),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -237,7 +265,7 @@ class _ProductDetailSheetContentState extends ConsumerState<_ProductDetailSheetC
         SafeArea(
           top: false,
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AppSpacing.sheetActionPadding),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();

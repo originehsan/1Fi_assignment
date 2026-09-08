@@ -26,19 +26,22 @@ class ProductListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       // elevation/color/shape (cardBackground fill, divider border,
-      // 16px radius, no shadow) come from AppTheme.light's cardTheme —
-      // matches every other card in this project, per rules.md
-      // Section 3 (don't duplicate a design value already centralized).
+      // AppRadius.card radius, no shadow) come from AppTheme.light's
+      // cardTheme — matches every other card in this project, per
+      // rules.md Section 3 (don't duplicate a design value already
+      // centralized). The InkWell below references the same
+      // AppRadius.card constant (rather than its own literal) so its
+      // ripple-clip radius can't drift from the Card's own shape.
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(AppRadius.card),
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(AppSpacing.tilePadding),
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppRadius.thumbnail),
                 child: SizedBox(
                   width: 72,
                   height: 72,
@@ -48,7 +51,7 @@ class ProductListItem extends StatelessWidget {
                     placeholder: (context, url) => const ShimmerBox(
                       height: 72,
                       width: 72,
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderRadius: BorderRadius.all(Radius.circular(AppRadius.thumbnail)),
                     ),
                     errorWidget: (context, url, error) => Container(
                       color: AppColors.divider,
@@ -67,11 +70,7 @@ class ProductListItem extends StatelessWidget {
                       product.name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
-                      ),
+                      style: AppTextStyles.titleSmall,
                     ),
                     const SizedBox(height: 4),
                     Text(

@@ -22,7 +22,7 @@ class EmiPlanTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(12),
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(AppSpacing.tilePadding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
@@ -55,7 +55,7 @@ class EmiPlanTile extends StatelessWidget {
                     plan.isNoCost
                         ? 'No-cost EMI • Total ₹${plan.totalPayable}'
                         : '${plan.interestRatePerAnnum.toStringAsFixed(0)}% p.a. • Total ₹${plan.totalPayable}',
-                    style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                    style: AppTextStyles.caption,
                   ),
                 ],
               ),

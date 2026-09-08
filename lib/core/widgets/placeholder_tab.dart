@@ -33,14 +33,7 @@ class PlaceholderTab extends StatelessWidget {
           children: [
             Icon(icon, size: 48, color: AppColors.textSecondary),
             const SizedBox(height: 16),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textPrimary,
-              ),
-            ),
+            Text(title, style: AppTextStyles.titleSmall),
             const SizedBox(height: 8),
             Text(
               subtitle,

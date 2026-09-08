@@ -152,7 +152,7 @@ class _NavItem extends StatelessWidget {
                       height: 3,
                       decoration: BoxDecoration(
                         color: AppColors.primary,
-                        borderRadius: BorderRadius.circular(2),
+                        borderRadius: BorderRadius.circular(AppRadius.indicatorBar),
                       ),
                     ),
                   )

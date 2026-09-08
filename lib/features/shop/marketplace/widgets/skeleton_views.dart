@@ -73,13 +73,13 @@ class ProductListItemSkeleton extends StatelessWidget {
     return const Card(
       clipBehavior: Clip.antiAlias,
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.all(AppSpacing.tilePadding),
         child: Row(
           children: [
             ShimmerBox(
               width: 72,
               height: 72,
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius: BorderRadius.all(Radius.circular(AppRadius.thumbnail)),
             ),
             SizedBox(width: 12),
             Expanded(
@@ -118,7 +118,7 @@ class ProductListSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(AppSpacing.listContentPadding),
       itemCount: itemCount,
       itemBuilder: (context, index) => const Padding(
         padding: EdgeInsets.only(bottom: 12),
@@ -135,7 +135,7 @@ class EmiPlanTileSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(AppSpacing.tilePadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.divider),
