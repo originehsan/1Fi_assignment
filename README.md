@@ -8,9 +8,8 @@ A Flutter implementation of the **1Fi Marketplace** section inside the existing 
 
 | Shop — Top Brands *(existing)* | Shop — 1Fi Marketplace | Product Detail | Order Summary |
 |---|---|---|---|
-| ![Top Brands](screenshots/top_brands.png) | ![Marketplace listing](screenshots/marketplace_listing.png) | ![Product detail](screenshots/product_detail.png) | ![Order summary](screenshots/order_summary.png) |
+| ![Top Brands](screenshots/top_brands.png) | ![Marketplace listing](screenshots/marketplace_listing.png) | ![Product detail](screenshots/product_detail.png) | ![Emi detail](screenshots\emi_details.png) | ![Order summary](screenshots/order_summary.png) |
 
-*Add these four images to a `screenshots/` folder at the repo root and update the filenames above. The first shows the existing Top Brands tab for direct visual comparison; the other three walk through the built feature.*
 
 **APK:** [Download APK](https://github.com/originehsan/1Fi_assignment/releases/tag/apk)
 
