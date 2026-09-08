@@ -12,7 +12,7 @@ A Flutter implementation of the **1Fi Marketplace** section inside the existing 
 
 *Add these four images to a `screenshots/` folder at the repo root and update the filenames above. The first shows the existing Top Brands tab for direct visual comparison; the other three walk through the built feature.*
 
-**APK:** [Download APK](#) — *replace with the release APK link (GitHub Release, Drive, etc.)*
+**APK:** [Download APK](https://github.com/originehsan/1Fi_assignment/releases/tag/v1.0.0)
 
 ---
 
