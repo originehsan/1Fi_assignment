@@ -7,7 +7,7 @@ A Flutter implementation of the **1Fi Marketplace** section inside the existing 
 ## Screenshots
 
 | Shop — Top Brands *(existing)* | Shop — 1Fi Marketplace | Product Detail | Order Summary |
-|---|---|---|---|
+|---|---|---|---|---|
 | ![Top Brands](screenshots/top_brands.png) | ![Marketplace listing](screenshots/marketplace_listing.png) | ![Product detail](screenshots/product_detail.png) | ![Emi detail](screenshots\emi_details.png) | ![Order summary](screenshots/order_summary.png) |
 
 
@@ -63,32 +63,47 @@ MockMarketplaceRepository (JSON asset + simulated network delay)
 
 ## Project structure
 
+```
 lib/
 ├── main.dart
-├── app_shell.dart — top-level 5-tab bottom navigation
+├── app_shell.dart                    — top-level 5-tab bottom navigation
 ├── theme/
-│ └── app_theme.dart — design tokens
+│   └── app_theme.dart                — design tokens
 ├── core/
-│ └── widgets/
-│ └── placeholder_tab.dart
+│   └── widgets/
+│       └── placeholder_tab.dart
 └── features/
-└── shop/
-├── screens/
-│ └── shop_page.dart — 3-tab Shop shell
-└── marketplace/
-├── models/ — Product, ProductVariant, EmiPlan
-├── data/ — repository interface + mock implementation
-├── providers/ — async data, search/filter, selection state
-├── screens/ — Marketplace listing
-└── widgets/ — product list item, variant selector,
-EMI plan tile, product detail sheet,
-loading/error/empty state views
+    └── shop/
+        ├── screens/
+        │   └── shop_page.dart        — 3-tab Shop shell
+        └── marketplace/
+            ├── models/
+            │   ├── product.dart
+            │   ├── product_variant.dart
+            │   └── emi_plan.dart
+            ├── data/
+            │   ├── marketplace_repository.dart       — abstract interface
+            │   └── mock_marketplace_repository.dart  — mock implementation
+            ├── providers/
+            │   ├── marketplace_provider.dart          — async data, search/filter state
+            │   └── product_selection_provider.dart    — variant/EMI selection state
+            ├── screens/
+            │   └── marketplace_listing_screen.dart
+            └── widgets/
+                ├── product_list.dart
+                ├── product_list_item.dart
+                ├── variant_selector.dart
+                ├── emi_plan_tile.dart
+                ├── product_detail_sheet.dart
+                ├── skeleton_views.dart
+                └── async_state_views.dart
 
-assets/mock/products.json — mock product catalog
+assets/mock/products.json           — mock product catalog
 test/
 ├── models/emi_plan_test.dart
 ├── providers/product_selection_notifier_test.dart
 └── widget_test.dart
+```
 
 
 ## Getting started
