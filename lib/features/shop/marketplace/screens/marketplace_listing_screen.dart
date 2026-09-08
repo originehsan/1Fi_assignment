@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/marketplace_provider.dart';
 import '../widgets/async_state_views.dart';
+import '../widgets/product_detail_sheet.dart';
 import '../widgets/product_list.dart';
 import '../widgets/skeleton_views.dart';
-import 'product_detail_screen.dart';
 
 /// The Marketplace tab: category filter and the product list.
 ///
@@ -75,9 +75,7 @@ class MarketplaceListingScreen extends ConsumerWidget {
                     products: products,
                     maxNoCostTenureMonths:
                         ref.watch(marketplaceRepositoryProvider).maxNoCostTenureMonths,
-                    onProductTap: (product) => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => ProductDetailScreen(product: product)),
-                    ),
+                    onProductTap: (product) => showProductDetailSheet(context, product),
                   );
                 },
               ),
